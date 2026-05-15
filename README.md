@@ -4,7 +4,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-3.x-black?style=for-the-badge&logo=flask)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-red?style=for-the-badge)
 
 ---
