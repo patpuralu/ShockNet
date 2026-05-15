@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShockNet Agent</string>
+    <string name="splash_subtitle">NETWORK ALERT SYSTEM  //  AGENT</string>
+
+    <string name="status_running">Active — listening for connections</string>
+    <string name="status_stopped">Inactive — agent not started</string>
+
+    <string name="btn_start">Start agent</string>
+    <string name="btn_stop">Stop agent</string>
+    <string name="btn_save">Save configuration</string>
+
+    <string name="section_device">// Device</string>
+    <string name="section_security">// Security</string>
+    <string name="section_behavior">// Behavior</string>
+    <string name="section_info">// Information</string>
+
+    <string name="label_device_name">Device name</string>
+    <string name="label_http_port">HTTP port (must match the launcher)</string>
+    <string name="label_auth_token">Auth token (empty = no protection)</string>
+    <string name="label_sleep_min">Auto-sleep after X minutes of inactivity</string>
+
+    <string name="sw_auto_start">Start on device boot</string>
+    <string name="sw_sound">Vibrate on alert received</string>
+    <string name="sw_kiosk">Kiosk mode (lock until confirmed)</string>
+
+    <string name="info_auth_token">
+        The token must match the one in the ShockNet launcher.
+        If empty, anyone on the network can send alerts.
+    </string>
+    <string name="info_kiosk">
+        In kiosk mode the alert cannot be dismissed with the back button.
+        The recipient must tap the confirm button.
+    </string>
+    <string name="info_how_it_works">
+        The agent acts as an autonomous HTTP server on your local WiFi network.
+    </string>
+
+    <string name="notif_channel_idle">ShockNet — Idle</string>
+    <string name="notif_channel_alert">ShockNet — Alerts</string>
+    <string name="notif_idle_title">ShockNet Agent</string>
+    <string name="notif_idle_text">Active at %1$s:%2$d</string>
+
+    <string name="toast_saved">✓ Configuration saved</string>
+    <string name="error_invalid_port">Invalid port. Use a number between 1025 and 65534.</string>
+    <string name="error_no_wifi">No WiFi connection. Connect to the local network.</string>
+</resources>

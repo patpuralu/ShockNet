@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre de la app -->
+    <string name="app_name">ShockNet Agent</string>
+
+    <!-- Splash -->
+    <string name="splash_subtitle">NETWORK ALERT SYSTEM  //  AGENT</string>
+
+    <!-- Estado del servicio -->
+    <string name="status_running">Activo — escuchando conexiones</string>
+    <string name="status_stopped">Inactivo — agente no iniciado</string>
+
+    <!-- Botones -->
+    <string name="btn_start">Iniciar agente</string>
+    <string name="btn_stop">Detener agente</string>
+    <string name="btn_save">Guardar configuración</string>
+
+    <!-- Secciones -->
+    <string name="section_device">// Dispositivo</string>
+    <string name="section_security">// Seguridad</string>
+    <string name="section_behavior">// Comportamiento</string>
+    <string name="section_info">// Información</string>
+
+    <!-- Campos -->
+    <string name="label_device_name">Nombre del dispositivo</string>
+    <string name="label_http_port">Puerto HTTP (debe coincidir con el launcher)</string>
+    <string name="label_auth_token">Token de autenticación (vacío = sin protección)</string>
+    <string name="label_sleep_min">Auto-sleep tras X minutos sin actividad</string>
+
+    <!-- Switches -->
+    <string name="sw_auto_start">Arrancar al encender el dispositivo</string>
+    <string name="sw_sound">Vibrar al recibir aviso</string>
+    <string name="sw_kiosk">Modo kiosko (bloquear hasta confirmar)</string>
+
+    <!-- Textos de información -->
+    <string name="info_auth_token">
+        El token debe ser el mismo que en el launcher ShockNet.
+        Si está vacío, cualquier persona en la red puede enviar avisos.
+    </string>
+    <string name="info_kiosk">
+        En modo kiosko el aviso no se puede cerrar con el botón atrás.
+        El receptor debe pulsar el botón de confirmación.
+    </string>
+    <string name="info_how_it_works">
+        El agente actúa como servidor HTTP autónomo en tu red WiFi local.
+    </string>
+
+    <!-- Notificaciones -->
+    <string name="notif_channel_idle">ShockNet — En espera</string>
+    <string name="notif_channel_alert">ShockNet — Alertas</string>
+    <string name="notif_idle_title">ShockNet Agent</string>
+    <string name="notif_idle_text">Activo en %1$s:%2$d</string>
+
+    <!-- Toasts y errores -->
+    <string name="toast_saved">✓ Configuración guardada</string>
+    <string name="error_invalid_port">Puerto inválido. Usa un número entre 1025 y 65534.</string>
+    <string name="error_no_wifi">Sin conexión WiFi. Conéctate a la red local.</string>
+</resources>
