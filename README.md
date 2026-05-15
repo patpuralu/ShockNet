@@ -19,7 +19,7 @@ El proyecto está enfocado en:
 - 🔐 Comunicación segura
 - 📊 Registro y estadísticas
 - 🎨 Personalización mediante temas
-- 📱 Compatibilidad futura con Android
+- 📱 Compatibilidad con Android
 
 ShockNet combina una aplicación principal en Python con agentes receptores que muestran mensajes en tiempo real usando una interfaz moderna y configurable.
 
