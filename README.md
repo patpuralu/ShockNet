@@ -85,13 +85,25 @@ El objetivo es facilitar toda la instalación y configuración desde un único m
 
 Es necesario ejecutar la terminal como Administrador.
 
-Abrir una terminal como Administrador y
+Primero clonar el repositorio:
+
+```bash
+git clone https://github.com/patpuralu/ShockNet.git
+```
+
+Entrar a la carpeta del proyecto:
+
+```bash
+cd ShockNet
+```
+
+Después ejecutar:
 
 ```bash
 python instalador.py
 ```
 
-O usar directamente:
+O
 
 ```bash
 install/install_windows.bat
@@ -100,6 +112,20 @@ install/install_windows.bat
 ---
 
 ## Linux
+
+La instalación requiere permisos sudo.
+
+Primero clonar el repositorio:
+
+```bash
+git clone https://github.com/patpuralu/ShockNet.git
+```
+
+Entrar a la carpeta del proyecto:
+
+```bash
+cd ShockNet
+```
 
 Dar permisos y ejecutar:
 
