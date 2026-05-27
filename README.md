@@ -279,3 +279,13 @@ Creative Commons Attribution-NonCommercial 4.0 International
 
 Uso permitido únicamente para fines no comerciales.
 
+---
+
+<div align="center">
+
+### ShockNet
+
+Developed by PatPuralu  
+Creative Commons BY-NC 4.0
+
+</div>
