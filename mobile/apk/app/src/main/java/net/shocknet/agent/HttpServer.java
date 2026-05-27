@@ -30,7 +30,7 @@ public class HttpServer implements Runnable {
         String getDeviceName();
         String getLocalIp();
         String getAuthToken();
-        byte[] takeScreenshot();   // puede devolver null si no disponible
+        byte[] takeScreenshot();   
     }
 
     public HttpServer(int port, RequestHandler handler) {
@@ -70,7 +70,6 @@ public class HttpServer implements Runnable {
 
     public boolean isRunning() { return running; }
 
-    // Manejo de una conexión 
     private void handleClient(Socket client) {
         try {
             client.setSoTimeout(4000);
@@ -270,7 +269,6 @@ public class HttpServer implements Runnable {
         out.flush();
     }
 
-    // ── Acceso estático al último aviso (para otras Activities) ─
     public static NotifModel getLastNotif() { return lastNotif; }
     public static void clearLastNotif()     { lastNotif = null; }
 }
