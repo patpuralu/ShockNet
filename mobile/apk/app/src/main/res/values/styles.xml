@@ -11,7 +11,7 @@
         <item name="android:navigationBarColor">#000000</item>
     </style>
 
-    <!-- Tema del splash — negro puro, sin barra de estado -->
+    <!-- Tema del splash -->
     <style name="SplashTheme" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">#000000</item>
         <item name="android:windowFullscreen">true</item>
@@ -19,13 +19,6 @@
         <item name="android:navigationBarColor">#000000</item>
     </style>
 
-    <!--
-        Tema de la alerta — pantalla completa.
-        NOTA: windowShowWhenLocked, windowTurnScreenOn y windowDismissKeyguard
-        se aplican en código (AlertActivity.onCreate) porque en XML
-        solo funcionan con compileSdk >= 27 con AppCompat.
-        Aquí solo ponemos lo que sí funciona en Theme.Material.
-    -->
     <style name="AlertTheme" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowBackground">#000000</item>
         <item name="android:windowFullscreen">true</item>
