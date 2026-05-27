@@ -3,7 +3,7 @@ setlocal EnableDelayedExpansion
 title ShockNet - Instalador Windows
 echo.
 echo  =========================================
-echo   ⚡ ShockNet - Instalador Windows
+echo       ShockNet - Instalador Windows
 echo  =========================================
 echo.
 net session >nul 2>&1
