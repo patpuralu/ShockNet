@@ -29,7 +29,7 @@ public class AlertActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Encender pantalla y aparecer sobre la pantalla de bloqueo
+        
         getWindow().addFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON      |
             WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON      |
@@ -70,7 +70,7 @@ public class AlertActivity extends Activity {
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(Color.BLACK);
 
-        // Scanlines (dibujadas en canvas)
+        // Scanlines
         View scanlines = new View(this) {
             @Override protected void onDraw(android.graphics.Canvas c) {
                 android.graphics.Paint p = new android.graphics.Paint();
@@ -135,7 +135,7 @@ public class AlertActivity extends Activity {
         termHdr.addView(termLbl);
         layout.addView(termHdr);
 
-        // Línea divisoria cian
+     
         View hline = new View(this);
         hline.setBackgroundColor(Color.parseColor("#00f0ff"));
         hline.setAlpha(0.15f);
@@ -160,7 +160,7 @@ public class AlertActivity extends Activity {
             layout.addView(encBadge);
         }
 
-        // Título — tipografía enorme, glow
+        
         TextView tvTitle = new TextView(this);
         tvTitle.setText(title.toUpperCase());
         tvTitle.setTextColor(Color.parseColor("#00f0ff"));
@@ -168,7 +168,7 @@ public class AlertActivity extends Activity {
         tvTitle.setTypeface(Typeface.DEFAULT_BOLD);
         tvTitle.setLetterSpacing(0.04f);
         tvTitle.setLineSpacing(dp(-4), 1f);
-        // Efecto glitch con animación
+      
         AnimationSet glitchSet = new AnimationSet(false);
         TranslateAnimation glitch1 = new TranslateAnimation(-dp(2), dp(2), 0, 0);
         glitch1.setDuration(80);
@@ -184,7 +184,6 @@ public class AlertActivity extends Activity {
         tvTitle.setLayoutParams(titleP);
         layout.addView(tvTitle);
 
-        // Mensaje — estilo terminal con borde izquierdo
         LinearLayout msgBox = new LinearLayout(this);
         msgBox.setOrientation(LinearLayout.HORIZONTAL);
         msgBox.setPadding(0, 0, 0, dp(32));
@@ -210,7 +209,6 @@ public class AlertActivity extends Activity {
         layout.addView(new View(this), new LinearLayout.LayoutParams(
             0, 0, 1f));
 
-        // Botón estilo terminal
         Button btn = new Button(this);
         btn.setText("> ACK_");
         btn.setTextColor(Color.parseColor("#00f0ff"));
@@ -219,7 +217,6 @@ public class AlertActivity extends Activity {
         btn.setAllCaps(false);
         btn.setBackgroundColor(Color.TRANSPARENT);
         btn.setTypeface(Typeface.MONOSPACE);
-        // Borde manual
         btn.setBackground(getBorderDrawable("#00f0ff", 1));
         btn.setPadding(dp(28), dp(14), dp(28), dp(14));
         btn.setOnClickListener(v -> acknowledge());
@@ -238,7 +235,6 @@ public class AlertActivity extends Activity {
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(Color.parseColor("#07000e"));
 
-        // Fondo aurora — glow radial en las esquinas
         View aurora = new View(this) {
             @Override protected void onDraw(android.graphics.Canvas c) {
                 android.graphics.Paint p = new android.graphics.Paint();
@@ -383,7 +379,7 @@ public class AlertActivity extends Activity {
 
     // Confirmar lectura y cerrar
     private void acknowledge() {
-        // Notificar al servidor HTTP local (que corre en AgentService)
+        // Notificar al servidor HTTP local
         new Thread(() -> {
             try {
                 URL url = new URL("http://127.0.0.1:"
@@ -407,16 +403,15 @@ public class AlertActivity extends Activity {
         overridePendingTransition(0, android.R.anim.fade_out);
     }
 
-    // Bloquear botón atrás en modo kiosko 
+  
     @Override
     public void onBackPressed() {
         if (!kiosk) {
             acknowledge();
         }
-        // En kiosko: no hacer nada
+        
     }
 
-    // Mantener pantalla completa si vuelve el foco 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -428,7 +423,6 @@ public class AlertActivity extends Activity {
         }
     }
 
-    // Helper: borde de color
     private android.graphics.drawable.GradientDrawable getBorderDrawable(
             String colorHex, int strokeDp) {
         android.graphics.drawable.GradientDrawable gd =
