@@ -1,7 +1,4 @@
-# ============================================================
-#  ShockNet — core/crypto_utils.py v1.0
-#  Cifrado AES-256-CBC compartido entre agente y launcher
-# ============================================================
+#  Cifrado AES-256-CBC 
 
 import os, base64, json
 
