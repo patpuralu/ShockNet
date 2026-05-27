@@ -76,7 +76,7 @@ public class ShockNetService extends Service {
         int udpPort = prefs.getInt(PREF_UDP_PORT, DEFAULT_UDP_PORT);
         try {
             udpSocket = new DatagramSocket(udpPort);
-            udpSocket.setSoTimeout(0);  // bloquea indefinidamente
+            udpSocket.setSoTimeout(0);  
             byte[] buf = new byte[64];
             DatagramPacket pkt = new DatagramPacket(buf, buf.length);
 
@@ -84,12 +84,10 @@ public class ShockNetService extends Service {
 
             while (running.get()) {
                 try {
-                    udpSocket.receive(pkt);   // BLOQUEADO aquí = 0% CPU
+                    udpSocket.receive(pkt);   /
                     String msg = new String(pkt.getData(), 0, pkt.getLength()).trim();
                     Log.i(TAG, "UDP wake-up recibido: " + msg + " de " + pkt.getAddress());
-
-                    // El launcher puede enviar la IP del agente en el paquete
-                    // Formato: "SHOCK:<ip_agente>" o simplemente "SHOCK"
+                
                     if (msg.startsWith("SHOCK")) {
                         if (msg.contains(":") && msg.split(":").length > 1) {
                             String newIp = msg.split(":")[1].trim();
@@ -139,7 +137,7 @@ public class ShockNetService extends Service {
         updateNotification("En espera…", false);
     }
 
-    // POLL AGENT — consulta /pwa_check 
+    // POLL AGENT
     private void pollAgent() {
         String ip   = prefs.getString(PREF_AGENT_IP, "");
         int    port = prefs.getInt(PREF_AGENT_PORT, DEFAULT_HTTP_PORT);
@@ -174,7 +172,7 @@ public class ShockNetService extends Service {
             JSONObject obj = new JSONObject(json);
             String id = obj.optString("id", "");
             if (id == null || id.equals("null") || id.isEmpty()) return;
-            if (id.equals(lastNotifId)) return;  // ya lo mostramos
+            if (id.equals(lastNotifId)) return; 
 
             lastNotifId = id;
             lastMsgTime = System.currentTimeMillis();
@@ -192,7 +190,7 @@ public class ShockNetService extends Service {
         }
     }
 
-    // LANZAR ALERTA a pantalla completa 
+    // LANZAR ALERTA
     private void launchAlert(String id, String title, String message, String icon) {
         
         Intent fullScreenIntent = new Intent(this, AlertActivity.class);
