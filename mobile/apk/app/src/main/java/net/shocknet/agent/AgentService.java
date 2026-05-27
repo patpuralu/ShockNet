@@ -143,7 +143,7 @@ public class AgentService extends Service implements HttpServer.RequestHandler {
         return Prefs.authToken(this);
     }
 
-    // ── Utilidades de red ─────────────────────────────────────
+    // Utilidades de red
     public static String getWifiIp() {
         try {
             Enumeration<NetworkInterface> interfaces =
@@ -237,7 +237,6 @@ public class AgentService extends Service implements HttpServer.RequestHandler {
         startForeground(1, n);
     }
 
-    // ── Helper: construye el Intent del AlertActivity ─────────
     private Intent buildAlertIntent(NotifModel notif) {
         Intent i = new Intent(this, AlertActivity.class);
         i.putExtra(AlertActivity.EXTRA_NOTIF_ID,  notif.id);
