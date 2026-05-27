@@ -8,7 +8,7 @@ import threading
 if __name__ == "__main__":
     ip = get_local_ip()
     print("="*54)
-    print(f"    ShockNet Agent v3.0")
+    print(f"    ShockNet Agent v1.0")
     print(f"  IP        : {ip}")
     print(f"  Puerto    : {AGENT_PORT}")
     print(f"  PWA móvil : http://{ip}:{AGENT_PORT}/")
