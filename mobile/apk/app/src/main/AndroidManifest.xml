@@ -31,7 +31,6 @@
         android:theme="@style/AppTheme"
         android:supportsRtl="true">
 
-        <!-- Splash — primera pantalla con animación -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -51,7 +50,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Pantalla de alerta a pantalla completa -->
         <activity
             android:name=".AlertActivity"
             android:exported="false"
@@ -62,13 +60,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AlertTheme" />
 
-        <!-- Servicio HTTP autónomo (el corazón del agente) -->
         <service
             android:name=".AgentService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
-        <!-- Arranque automático al encender el dispositivo -->
         <receiver
             android:name=".BootReceiver"
             android:exported="true">
