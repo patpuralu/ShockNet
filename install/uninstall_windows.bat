@@ -1,7 +1,7 @@
 @echo off
 title ShockNet - Desinstalador Windows
 echo.
-echo  ⚡ ShockNet - Desinstalador Windows
+echo    ShockNet - Desinstalador Windows
 echo  ======================================
 net session >nul 2>&1
 if %errorlevel% neq 0 (echo  [ERROR] Ejecuta como Administrador. & pause & exit /b 1)
