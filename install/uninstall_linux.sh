@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 echo ""
-echo " ⚡ ShockNet - Desinstalador Linux"
+echo "  ShockNet - Desinstalador Linux"
 echo " ===================================="
 [[ $EUID -ne 0 ]] && echo " [ERROR] Ejecuta con sudo" && exit 1
 systemctl is-active  --quiet shocknet-agent 2>/dev/null && systemctl stop    shocknet-agent && echo " ✓ Servicio parado."
