@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-# ============================================================
-#  ShockNet — core/agent.py  v1.0
-# ============================================================
 
 import sys, os, threading, webbrowser, socket, subprocess, platform
 import logging, io
@@ -43,9 +40,6 @@ HTML = """<!DOCTYPE html>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;overflow:hidden}
 
-/* ═══════════════════════════════════════════════════════
-   CYBER — intrusión en terminal, sin card, todo en bruto
-═══════════════════════════════════════════════════════ */
 {% if t.accent == "#00f0ff" %}
 body{background:#000;color:#00f0ff;font-family:'Share Tech Mono',monospace;position:relative;}
 
@@ -154,9 +148,6 @@ h1{
 .ts{font-size:.6rem;color:rgba(0,240,255,.2);letter-spacing:.06em;}
 {% endif %}
 
-/* ═══════════════════════════════════════════════════════
-   AURORA — editorial brutal, split asimétrico, tipografía XL
-═══════════════════════════════════════════════════════ */
 {% if t.accent == "#c060ff" %}
 body{
   background:#07000e;
