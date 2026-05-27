@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 echo ""
-echo " ⚡ ShockNet - Instalador Linux"
+echo " ShockNet - Instalador Linux"
 echo " ================================="
 [[ $EUID -ne 0 ]] && echo " [ERROR] Ejecuta con sudo" && exit 1
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
