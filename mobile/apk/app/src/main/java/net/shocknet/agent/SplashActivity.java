@@ -20,7 +20,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Pantalla completa sin barra de estado
         getWindow().setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -39,7 +38,6 @@ public class SplashActivity extends Activity {
     }
 
     private void buildUI() {
-        // Fondo negro puro
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(Color.BLACK);
 
@@ -52,7 +50,6 @@ public class SplashActivity extends Activity {
                 p.setAlpha(18);
                 p.setStrokeWidth(1f);
                 int h = getHeight(), w = getWidth();
-                // Líneas horizontales sutiles
                 for (int y = 0; y < h; y += 3) {
                     canvas.drawLine(0, y, w, y, p);
                 }
@@ -63,7 +60,7 @@ public class SplashActivity extends Activity {
             FrameLayout.LayoutParams.MATCH_PARENT));
         root.addView(bgLines);
 
-        // Contenedor central 
+        // Contenedor
         LinearLayout center = new LinearLayout(this);
         center.setOrientation(LinearLayout.VERTICAL);
         center.setGravity(Gravity.CENTER);
@@ -106,7 +103,6 @@ public class SplashActivity extends Activity {
         net.setLetterSpacing(0.1f);
         center.addView(net);
 
-        // Subtítulo
         TextView sub = new TextView(this);
         sub.setText(getString(R.string.splash_subtitle));
         sub.setTextColor(Color.parseColor("#444444"));
@@ -145,10 +141,6 @@ public class SplashActivity extends Activity {
         root.addView(version);
 
         setContentView(root);
-
-        // ══════════════════════════════════════════════════════
-        //  ANIMACIONES
-        // ══════════════════════════════════════════════════════
 
         AnimationSet shockAnim = new AnimationSet(true);
         TranslateAnimation shockSlide = new TranslateAnimation(0,0, dp(40),0);
