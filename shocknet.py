@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-# ============================================================
-#  ShockNet — shocknet.py  v1.0
-# ============================================================
-
 import tkinter as tk
 from tkinter import messagebox, filedialog
 import requests, threading, subprocess, socket
@@ -18,9 +14,6 @@ from core.config import (AGENT_PORT, TIMEOUT, SCAN_TIMEOUT, DEFAULT_TITLE,
 from core.crypto_utils import encrypt_payload
 from core.stats import load_history as _load_hist, compute_stats, export_csv, export_pdf
 
-# ════════════════════════════════════════════════════════════
-#  PALETA 
-# ════════════════════════════════════════════════════════════
 C = {
     "bg":        "#080808",   
     "sidebar":   "#0f0f0f",   
@@ -61,10 +54,6 @@ NAV_ITEMS  = [
     ("CFG",  "⚙  CONFIG",     "config"),
 ]
 
-
-# ════════════════════════════════════════════════════════════
-#  WIDGETS
-# ════════════════════════════════════════════════════════════
 class Entry(tk.Entry):
     """Campo de texto estilizado."""
     def __init__(self, master, var, width=40, show=None, **kw):
@@ -119,10 +108,6 @@ class StatusBar(tk.Frame):
         self._msg.config(text=msg, fg=c)
         self._dot.config(fg=c)
 
-
-# ════════════════════════════════════════════════════════════
-#  APP PRINCIPAL
-# ════════════════════════════════════════════════════════════
 class ShockNet:
     def __init__(self, root):
         self.root   = root
@@ -152,7 +137,6 @@ class ShockNet:
         for i, (_, _, key) in enumerate(NAV_ITEMS, 1):
             self.root.bind(f"<Control-{i}>", lambda e, k=key: self._switch(k))
 
-    # ── Historial / Plantillas ────────────────────────────────
     def _load_history(self):
         try:
             with open(HISTORY_FILE,"r",encoding="utf-8") as f: self.history = json.load(f)
@@ -176,16 +160,12 @@ class ShockNet:
                 json.dump(self.templates, f, ensure_ascii=False, indent=2)
         except: pass
 
-    # ════════════════════════════════════════════════════════
-    #  BUILD 
-    # ════════════════════════════════════════════════════════
     def _build(self):
-        # ── Sidebar izquierdo ──────────────────────────────────
+        # Sidebar izquierdo
         self._sidebar = tk.Frame(self.root, bg=C["sidebar"], width=SIDEBAR_W)
         self._sidebar.pack(side="left", fill="y")
         self._sidebar.pack_propagate(False)
 
-        # Logo en el sidebar
         logo_f = tk.Frame(self._sidebar, bg=C["sidebar"])
         logo_f.pack(fill="x", pady=(0,0))
         tk.Frame(logo_f, bg=C["accent"], height=3).pack(fill="x")
@@ -210,12 +190,10 @@ class ShockNet:
                             padx=16, pady=9, bd=0,
                             command=lambda k=key: self._switch(k))
             btn.pack(fill="x")
-            # Indicador lateral rojo
             ind = tk.Frame(f, bg=C["sidebar"], width=3)
             ind.place(x=0, y=0, height=36)
             self._nav_btns[key] = (btn, ind, f)
 
-        # Indicador de conexión en la parte baja del sidebar
         tk.Frame(self._sidebar, bg=C["sidebar"]).pack(fill="both", expand=True)
         conn_f = tk.Frame(self._sidebar, bg=C["sidebar"])
         conn_f.pack(fill="x", pady=(0,4))
@@ -228,14 +206,12 @@ class ShockNet:
                                    bg=C["sidebar"], fg=C["text3"], wraplength=130, justify="left")
         self._conn_lbl.pack(side="left", padx=(6,0))
 
-        # Separador vertical
         tk.Frame(self.root, bg=C["border"], width=1).pack(side="left", fill="y")
 
-        # ── Área principal ─────────────────────────────────────
+        #Área principal
         self._main = tk.Frame(self.root, bg=C["panel"])
         self._main.pack(side="left", fill="both", expand=True)
 
-        # Header del área principal
         self._hdr = tk.Frame(self._main, bg=C["card"], height=48)
         self._hdr.pack(fill="x")
         self._hdr.pack_propagate(False)
@@ -278,10 +254,8 @@ class ShockNet:
         self._canvas.bind("<Configure>", lambda e:
                           self._canvas.itemconfig(self._page_id, width=e.width))
 
-        # Statusbar
         self._statusbar = StatusBar(self.root)
 
-        # Construir páginas
         self._build_message(self._pages["message"])
         self._build_scanner(self._pages["scanner"])
         self._build_themes(self._pages["themes"])
@@ -308,9 +282,6 @@ class ShockNet:
         if key == "stats":     self._refresh_stats()
         if key == "templates": self._refresh_templates()
 
-    # ════════════════════════════════════════════════════════
-    #  HELPERS DE UI
-    # ════════════════════════════════════════════════════════
     def _section_title(self, parent, text, pady=(22,8)):
         f = tk.Frame(parent, bg=C["panel"]); f.pack(fill="x", padx=22, pady=pady)
         tk.Label(f, text=f"// {text}", font=FNT_MONO_B,
@@ -348,9 +319,6 @@ class ShockNet:
         sw=self.root.winfo_screenwidth(); sh=self.root.winfo_screenheight()
         h=min(h,sh-60); self.root.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
 
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: MENSAJE
-    # ════════════════════════════════════════════════════════
     def _build_message(self, p):
         # Destino
         self._section_title(p, "DESTINO", pady=(22,6))
@@ -393,7 +361,6 @@ class ShockNet:
 
         self._lbl_text(p, "MENSAJE", DEFAULT_MESSAGE, "msg_text", height=5)
 
-        # Imagen opcional
         f_img = tk.Frame(p, bg=C["panel"]); f_img.pack(fill="x", padx=22, pady=(10,0))
         tk.Label(f_img, text="URL IMAGEN  (opcional)", font=FNT_MONO,
                  bg=C["panel"], fg=C["text3"]).pack(anchor="w")
@@ -410,14 +377,13 @@ class ShockNet:
         self._sched_lbl = tk.Label(srow, text="", font=FNT_MONO, bg=C["card"], fg=C["warning"])
         self._sched_lbl.pack(side="left", padx=(12,0))
 
-        # Botones de acción
         tk.Frame(p, bg=C["border"], height=1).pack(fill="x", padx=22, pady=(20,0))
         act = tk.Frame(p, bg=C["panel"]); act.pack(fill="x", padx=22, pady=(14,0))
 
         self._send_btn = Btn(act, "  ⚡  ENVIAR AVISO  ", self._send, padx=28, pady=11)
         self._send_btn.pack(side="left")
 
-        BtnGhost(act, "🖥  VER PANTALLA", self._open_screen,
+        BtnGhost(act, "  VER PANTALLA", self._open_screen,
                  padx=14, pady=10).pack(side="left", padx=(10,0))
 
         self._act_lbl = tk.Label(p, text="", font=FNT_MONO, bg=C["panel"], fg=C["text3"])
@@ -427,10 +393,7 @@ class ShockNet:
         hints = tk.Frame(p, bg=C["panel"]); hints.pack(fill="x", padx=22, pady=(0,24))
         for txt in ["Ctrl+Enter → Enviar", "Ctrl+S → Guardar plantilla", "F5 → Escanear red"]:
             tk.Label(hints, text=f"  {txt}", font=FNT_MONO, bg=C["panel"], fg=C["text3"]).pack(side="left", padx=(0,18))
-
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: SCANNER
-    # ════════════════════════════════════════════════════════
+          
     def _build_scanner(self, p):
         self._section_title(p, "ESCÁNER DE RED", pady=(22,6))
         tk.Label(p, text="  Busca agentes ShockNet activos en la red local.",
@@ -447,7 +410,7 @@ class ShockNet:
         self._agent_list.pack(fill="x", padx=22, pady=(0,10))
         self._scan_placeholder()
 
-        self._multi_btn = BtnGhost(p, "📤  ENVIAR A SELECCIONADOS", self._multi_send,
+        self._multi_btn = BtnGhost(p, "   ENVIAR A SELECCIONADOS", self._multi_send,
                                     padx=16, pady=9, state="disabled")
         self._multi_btn.pack(anchor="w", padx=22, pady=(0,24))
 
@@ -465,7 +428,7 @@ class ShockNet:
         self._scan_btn.config(state="disabled")
         self._scan_lbl.config(text="buscando...", fg=C["warning"])
         self._multi_sel.clear()
-        self._multi_btn.config(state="disabled", text="📤  ENVIAR A SELECCIONADOS")
+        self._multi_btn.config(state="disabled", text="   ENVIAR A SELECCIONADOS")
         self._scan_placeholder("escaneando la red...")
         threading.Thread(target=self._scan_thread, daemon=True).start()
 
@@ -554,9 +517,6 @@ class ShockNet:
         self.root.after(0,lambda:self._multi_btn.config(state="normal"))
         if ok: self._notify_desktop(payload.get("title","Aviso"),f"Entregado a {ok}/{len(ips)} dispositivos")
 
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: TEMAS
-    # ════════════════════════════════════════════════════════
     def _build_themes(self, p):
         self._section_title(p, "TEMAS VISUALES", pady=(22,6))
         tk.Label(p, text="  Vista previa abre el tema en el navegador sin necesitar agente.",
@@ -663,9 +623,6 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
             for k,c in self._theme_rows.items():
                 c.config(highlightbackground=C["accent"] if k==key else C["border"])
 
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: PLANTILLAS
-    # ════════════════════════════════════════════════════════
     def _build_templates(self, p):
         self._section_title(p, "PLANTILLAS DE MENSAJES", pady=(22,6))
         top = tk.Frame(p, bg=C["panel"]); top.pack(fill="x", padx=22, pady=(0,10))
@@ -752,10 +709,7 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
         name=self.templates[i].get("name","?")
         if messagebox.askyesno("Eliminar",f"¿Eliminar la plantilla '{name}'?"):
             self.templates.pop(i); self._save_templates_file(); self._refresh_templates()
-
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: HISTORIAL
-    # ════════════════════════════════════════════════════════
+          
     def _build_history(self, p):
         self._section_title(p, "HISTORIAL DE AVISOS", pady=(22,6))
         top=tk.Frame(p,bg=C["panel"]); top.pack(fill="x",padx=22,pady=(0,10))
@@ -805,9 +759,6 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
             except: pass
             self._refresh_history()
 
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: STATS
-    # ════════════════════════════════════════════════════════
     def _build_stats(self, p):
         self._section_title(p,"ESTADÍSTICAS",pady=(22,6))
         top=tk.Frame(p,bg=C["panel"]); top.pack(fill="x",padx=22,pady=(0,12))
@@ -906,9 +857,6 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
                 self.root.after(0,lambda m=msg:self._exp_lbl.config(text=f"✗ {m}",fg=C["error"]))
         threading.Thread(target=do,daemon=True).start()
 
-    # ════════════════════════════════════════════════════════
-    #  PÁGINA: CONFIG
-    # ════════════════════════════════════════════════════════
     def _build_config(self, p):
         self._section_title(p,"AUTENTICACIÓN",pady=(22,6))
         ac=self._card_frame(p)
@@ -962,9 +910,6 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
         if sys.platform=="win32": os.startfile(lp)
         else: subprocess.Popen(["xdg-open",lp])
 
-    # ════════════════════════════════════════════════════════
-    #  VISTA DE PANTALLA
-    # ════════════════════════════════════════════════════════
     def _open_screen(self, ip=None):
         ip=ip or self.manual_ip.get().strip()
         if not ip or ip.endswith("."): messagebox.showwarning("IP inválida","Introduce una IP completa."); return
@@ -1015,9 +960,6 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
         win.protocol("WM_DELETE_WINDOW",lambda:[stop_var.set(True),win.destroy()])
         win.after(500,refresh)
 
-    # ════════════════════════════════════════════════════════
-    #  LÓGICA DE ENVÍO
-    # ════════════════════════════════════════════════════════
     def _auth_headers(self):
         t=self.auth_token.get().strip()
         return {"Authorization":f"Bearer {t}"} if t else {}
@@ -1081,7 +1023,7 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
         threading.Thread(target=self._send_thread,args=(ip,payload),daemon=True).start()
 
     def _send_thread(self,ip,payload):
-        # Wake-up UDP para dispositivos Android antes del HTTP
+        # Wake-up UDP
         self._udp_wakeup(ip)
         try:
             r=requests.post(f"http://{ip}:{AGENT_PORT}/notify",
@@ -1115,17 +1057,17 @@ h1{{font-size:2rem;font-weight:700;color:{acc};margin-bottom:.8rem;text-shadow:0
         """Envía UDP broadcast para despertar agentes Android antes del aviso HTTP."""
         try:
             import socket as _sock
-            udp_port = 9998   # debe coincidir con PREF_UDP_PORT en el APK
+            udp_port = 9998  
             s = _sock.socket(_sock.AF_INET, _sock.SOCK_DGRAM)
             s.setsockopt(_sock.SOL_SOCKET, _sock.SO_BROADCAST, 1)
             s.settimeout(1)
             msg = f"SHOCK:{target_ip}".encode()
-            # Enviar al dispositivo concreto y también en broadcast
+            
             s.sendto(msg, (target_ip, udp_port))
             s.sendto(msg, ("255.255.255.255", udp_port))
             s.close()
         except Exception:
-            pass   # silencioso 
+            pass  
 
     def _notify_desktop(self,title,message,success=True):
         def do():
