@@ -1,123 +1,97 @@
-# ⚡ ShockNet v1
+<div align="center">
 
-> Plataforma visual de mensajería remota y notificaciones en red local con interfaz cyberpunk, agente receptor y estadísticas integradas.
+<img src="https://github.com/user-attachments/assets/0f76861b-29a4-4273-be4b-7ee407208e2d" width="220" alt="ShockNet Logo">
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
-![Flask](https://img.shields.io/badge/Flask-3.x-black?style=for-the-badge&logo=flask)
-![Status](https://img.shields.io/badge/Status-Active-red?style=for-the-badge)
+# ShockNet
 
----
+Windows • Linux • Android
 
-# 🚀 Descripción
+![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square)
+![Flask](https://img.shields.io/badge/Flask-Backend-black?style=flat-square)
+![Android](https://img.shields.io/badge/Android-APK-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Activo-red?style=flat-square)
 
-**ShockNet** es una plataforma de mensajería visual y comunicación remota diseñada para redes locales. Permite enviar mensajes, alertas y contenido visual a dispositivos conectados mediante un sistema de agentes receptores.
-
-El proyecto está enfocado en:
-
-- ⚡ Comunicación rápida dentro de la LAN
-- 🖥️ Interfaces visuales modernas
-- 🔐 Comunicación segura
-- 📊 Registro y estadísticas
-- 🎨 Personalización mediante temas
-- 📱 Compatibilidad con Android
-
-ShockNet combina una aplicación principal en Python con agentes receptores que muestran mensajes en tiempo real usando una interfaz moderna y configurable.
-
-Además, el proyecto incluye una base Android desarrollada con Java para futuras integraciones móviles.
+</div>
 
 ---
 
-# ✨ Características
+# Descripción
 
-## 🧠 Interfaz moderna
+ShockNet es una aplicación de comunicación remota diseñada para funcionar dentro de redes locales. Permite enviar mensajes y mostrar contenido en dispositivos conectados mediante un sistema de agentes receptores.
 
-- UI construida con **Tkinter**
-- Diseño oscuro estilo terminal/cyberpunk
-- Sidebar interactivo
-- Componentes personalizados
-- Navegación modular
+El proyecto está desarrollado en Python e incluye soporte para:
 
-## 🌐 Sistema de agentes
+- Windows
+- Linux
+- Android (APK)
 
-Cada dispositivo ejecuta un agente receptor basado en **Flask** que permite:
+ShockNet incluye:
 
-- Recibir mensajes remotos
-- Mostrar interfaces HTML dinámicas
-- Ejecutar modo kiosko
-- Registrar actividad
-- Validar autenticación
-
-## 🔐 Seguridad
-
-ShockNet incorpora:
-
-- Cifrado AES para payloads
-- Tokens de autenticación
-- Configuración centralizada
-- Comunicación segura dentro de la LAN
-
-## 📊 Estadísticas y reportes
-
-- Historial de mensajes
-- Exportación CSV
-- Exportación PDF
-- Métricas básicas
-- Registro de actividad
-
-## 🎨 Temas visuales
-
-Sistema de temas integrado:
-
-- Cyber
-- Neon
-- Dark
-- Red Alert
-- Variantes personalizadas
+- Aplicación principal para PC
+- Agente receptor remoto
+- Instalador automático
+- Sistema de comunicación LAN
+- APK Android
 
 ---
 
-# 🗂️ Estructura del proyecto
+# Dispositivos compatibles
+
+| Sistema | Compatible |
+|---|---|
+| Windows | Sí |
+| Linux | Sí |
+| Android APK | Sí |
+
+---
+
+# Instalación
+
+## Requisitos
+
+Antes de instalar ShockNet necesitas:
+
+- Python 3.11 o superior
+- pip
+- Conexión en red local
+
+---
+
+# Instalación automática
+
+ShockNet incluye un instalador automático llamado:
 
 ```bash
-ShockNet_v1/
-│
-├── shocknet.py              # Aplicación principal
-├── agent_run.py             # Inicializador del agente
-├── requirements.txt         # Dependencias
-├── instalador.py            # Instalador automático
-│
-├── core/
-│   ├── agent.py             # Servidor Flask receptor
-│   ├── config.py            # Configuración global
-│   ├── crypto_utils.py      # Utilidades AES
-│   ├── kiosk.py             # Modo kiosko
-│   └── stats.py             # Estadísticas y exportación
-│
-├── install/
-│   ├── install_linux.sh
-│   ├── install_windows.bat
-│   ├── uninstall_linux.sh
-│   └── uninstall_windows.bat
-│
-├── mobile/
-│   └── apk/                 # Base Android
-│
-└── templates.json
+instalador.py
 ```
 
+El instalador funciona mediante un menú interactivo donde puedes seleccionar distintas opciones.
+
+Opciones disponibles:
+
+- Instalar dependencias
+- Configurar agente
+- Instalar agente
+- Iniciar `shocknet.py`
+- Configurar entorno
+- Reparar instalación
+- Actualizar componentes
+
+El objetivo es facilitar toda la instalación y configuración desde un único menú.
+
 ---
 
-# ⚙️ Instalación
+## Windows
 
-## 📌 Requisitos
+Es necesario ejecutar la terminal como Administrador.
 
-- Python 3.11+
-- pip
-- Red local activa
+Abrir una terminal como Administrador y
 
----
+```bash
+python instalador.py
+```
 
-## 🪟 Windows
+O usar directamente:
 
 ```bash
 install/install_windows.bat
@@ -125,173 +99,157 @@ install/install_windows.bat
 
 ---
 
-## 🐧 Linux
+## Linux
+
+Dar permisos y ejecutar:
 
 ```bash
 chmod +x install/install_linux.sh
 ./install/install_linux.sh
 ```
 
----
-
-## 📦 Instalación manual
-
-### Clonar repositorio
-
-```bash
-git clone https://github.com/tuusuario/shocknet.git
-cd shocknet
-```
-
----
-
-### Instalar dependencias
-
-```bash
-pip install -r requirements.txt
-```
-
-Dependencias principales:
-
-- Flask
-- Requests
-- Pillow
-- QRCode
-- PyStray
-- Cryptography
-- ReportLab
-
----
-
-## ⚡ Instalador automático
-
-El proyecto incluye un archivo `instalador.py` compatible con Windows y Linux que automatiza la instalación y configuración inicial.
+También puedes usar:
 
 ```bash
 python instalador.py
 ```
 
-Este instalador:
-
-- Instala dependencias necesarias
-- Configura el entorno
-- Prepara archivos del sistema
-- Facilita la primera ejecución
-
 ---
 
-# ▶️ Uso
+# Cómo usar ShockNet en PC
 
-## Iniciar ShockNet
+## Iniciar la aplicación principal
 
 ```bash
 python shocknet.py
 ```
 
+La aplicación abrirá la interfaz principal desde donde podrás:
+
+- Gestionar dispositivos
+- Enviar mensajes
+- Controlar agentes
+- Supervisar conexiones
+
 ---
 
-## Ejecutar agente receptor
+## Iniciar el agente receptor
+
+Cada dispositivo receptor debe ejecutar:
 
 ```bash
 python agent_run.py
 ```
 
+El agente se encargará de:
+
+- Recibir mensajes
+- Mostrar alertas
+- Mantener conexión con ShockNet
+- Ejecutarse dentro de la red local
+
 ---
 
-# 🧩 Tecnologías utilizadas
+# APK Android
+
+El proyecto incluye una versión Android en formato APK.
+
+Archivo incluido:
+
+```bash
+ShockNet.apk
+```
+
+---
+
+# Cómo instalar la APK en el móvil
+
+Puedes descargar e instalar directamente la APK desde Android:
+
+[Descargar ShockNet APK](https://github.com/patpuralu/ShockNet/blob/main/ShockNet.apk)
+
+## Instalación
+
+1. Abrir el enlace desde el móvil
+2. Descargar `ShockNet.apk`
+3. Permitir instalación desde orígenes desconocidos
+4. Instalar la aplicación
+5. Abrir ShockNet
+
+---
+
+# Funcionamiento
+
+ShockNet funciona mediante comunicación en red local.
+
+La aplicación principal envía información a los agentes conectados.
+
+Los agentes receptores:
+
+- Escuchan conexiones
+- Reciben mensajes
+- Ejecutan acciones visuales
+- Mantienen comunicación dentro de la LAN
+
+---
+
+# Estructura del proyecto
+
+```bash
+ShockNet/
+│
+├── shocknet.py
+├── agent_run.py
+├── instalador.py
+├── ShockNet.apk
+│
+├── core/
+│   ├── agent.py
+│   ├── config.py
+│   ├── crypto_utils.py
+│   ├── kiosk.py
+│   └── stats.py
+│
+├── install/
+│   ├── install_linux.sh
+│   ├── install_windows.bat
+│   ├── uninstall_linux.sh
+│   └── uninstall_windows.bat
+│
+└── mobile/
+```
+
+---
+
+# Tecnologías utilizadas
 
 | Tecnología | Uso |
 |---|---|
 | Python | Backend principal |
 | Flask | Servidor del agente |
 | Tkinter | Interfaz gráfica |
-| Cryptography | Cifrado AES |
-| ReportLab | Exportación PDF |
 | Requests | Comunicación HTTP |
-| QRCode | Generación QR |
+| Cryptography | Seguridad |
+| Android Java | Aplicación móvil |
 
 ---
 
-# 🔐 Seguridad
+# Seguridad
 
-ShockNet utiliza cifrado AES para proteger la transmisión de datos y soporta autenticación mediante tokens.
+ShockNet utiliza autenticación y comunicación protegida para el intercambio de datos dentro de la red local.
 
-> Este proyecto está pensado para entornos educativos, pruebas locales y automatización dentro de redes privadas.
+El proyecto está orientado a:
 
----
-
-# 📸 Vista general
-
-## Panel principal
-
-- Gestión de mensajes
-- Historial
-- Scanner de red
-- Estadísticas
-- Temas visuales
-
-## Agente receptor
-
-- Interfaz HTML dinámica
-- Modo fullscreen
-- Visualización de alertas
-- Sistema de lectura de mensajes
+- Entornos privados
+- Redes LAN
+- Uso educativo
+- Automatización local
 
 ---
 
-# 📈 Posibles mejoras futuras
+# Licencia
 
-- 🔥 Dashboard web completo
-- 📱 APK Android funcional
-- ☁️ Comunicación cloud
-- 🧠 IA para automatización
-- 🔔 Notificaciones push
-- 🛰️ Descubrimiento automático de dispositivos
-- 👥 Multiusuario
-- 🗃️ Base de datos integrada
+Creative Commons Attribution-NonCommercial 4.0 International
 
----
+Uso permitido únicamente para fines no comerciales.
 
-# 🤝 Contribuciones
-
-Las contribuciones son bienvenidas.
-
-Puedes colaborar mediante:
-
-- Pull Requests
-- Reportes de bugs
-- Nuevas funcionalidades
-- Mejoras visuales
-- Optimización de red
-
----
-
-# 📄 Licencia
-
-Este proyecto se distribuye bajo licencia MIT.
-
----
-
-# 👨‍💻 Autor
-
-**ShockNet v1**
-
-Desarrollado como proyecto de automatización y comunicación visual en red local.
-
----
-
-# ⭐ Support
-
-Si te gusta el proyecto:
-
-- Dale una estrella ⭐
-- Compártelo
-- Contribuye al desarrollo
-
----
-
-# ⚡ ShockNet
-
-> "Fast local messaging. Cyber control. Visual impact."
-
-****
