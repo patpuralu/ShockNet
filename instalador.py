@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-# ============================================================
-#  ShockNet — instalador.py  v1.0
-# ============================================================
-
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import subprocess, sys, os, platform, threading, socket
@@ -12,28 +8,24 @@ ROOT   = os.path.dirname(os.path.abspath(__file__))
 CONFIG = os.path.join(ROOT, "core", "config.py")
 SYSTEM = platform.system()
 
-# ════════════════════════════════════════════════════════════
-#  PALETA 
-# ════════════════════════════════════════════════════════════
 I = {
-    "bg":       "#06080f",   # fondo raíz
-    "sidebar":  "#080d1a",   # sidebar pasos
-    "panel":    "#0b1121",   # panel contenido
-    "card":     "#111827",   # tarjeta
-    "card2":    "#1a2236",   # tarjeta elevada
-    "border":   "#1e2d4a",   # borde sutil
-    "border2":  "#2a4070",   # borde visible
-    "accent":   "#3b82f6",   # azul principal
-    "accent2":  "#60a5fa",   # azul hover
-    "accent_d": "#1e3a6e",   # azul oscuro fondo
-    "ok":       "#10b981",   # verde éxito
-    "warn":     "#f59e0b",   # naranja aviso
-    "err":      "#ef4444",   # rojo error
-    "text":     "#e2e8f0",   # texto primario
-    "text2":    "#94a3b8",   # texto secundario
-    "text3":    "#475569",   # texto terciario
-    "mono":     "Consolas",  # monoespaciada
-}
+    "bg":       "#06080f",  
+    "sidebar":  "#080d1a",   
+    "panel":    "#0b1121",  
+    "card":     "#111827",   
+    "card2":    "#1a2236",   
+    "border":   "#1e2d4a",   
+    "border2":  "#2a4070",   
+    "accent":   "#3b82f6",   
+    "accent2":  "#60a5fa",   
+    "accent_d": "#1e3a6e",   
+    "ok":       "#10b981",   
+    "warn":     "#f59e0b",   
+    "err":      "#ef4444",   
+    "text":     "#e2e8f0",   
+    "text2":    "#94a3b8",   
+    "text3":    "#475569",   
+    "mono":     "Consolas",  
 
 STEP_W = 200
 
@@ -44,10 +36,6 @@ STEPS = [
     ("04", "HERRAMIENTAS",   "tools"),
 ]
 
-
-# ════════════════════════════════════════════════════════════
-#  WIDGETS
-# ════════════════════════════════════════════════════════════
 class IEntry(tk.Entry):
     def __init__(self, master, var, width=40, show=None, **kw):
         super().__init__(master, textvariable=var, width=width,
@@ -94,9 +82,7 @@ class IBtnDanger(tk.Button):
         self.bind("<Leave>", lambda e: self.config(bg=I["accent_d"], fg=I["err"]))
 
 
-# ════════════════════════════════════════════════════════════
 #  SISTEMA
-# ════════════════════════════════════════════════════════════
 def get_ip():
     try:
         s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -157,9 +143,7 @@ def write_cfg(vals):
     except: return False
 
 
-# ════════════════════════════════════════════════════════════
 #  APP
-# ════════════════════════════════════════════════════════════
 class Instalador:
     def __init__(self, root):
         self.root=root
@@ -172,9 +156,6 @@ class Instalador:
         self._center(860,740)
         self.root.after(400,self._refresh_status)
 
-    # ════════════════════════════════════════════════════════
-    #  BUILD
-    # ════════════════════════════════════════════════════════
     def _build(self):
         
         top=tk.Frame(self.root,bg=I["accent"],height=2)
@@ -208,10 +189,9 @@ class Instalador:
 
         tk.Frame(self.root,bg=I["border"],height=1).pack(fill="x")
 
-        # Cuerpo principal 
+
         body=tk.Frame(self.root,bg=I["bg"]); body.pack(fill="both",expand=True)
 
-        # Sidebar de pasos
         self._step_sidebar=tk.Frame(body,bg=I["sidebar"],width=STEP_W)
         self._step_sidebar.pack(side="left",fill="y")
         self._step_sidebar.pack_propagate(False)
@@ -222,7 +202,7 @@ class Instalador:
         self._step_btns={}
         for num,label,key in STEPS:
             sf=tk.Frame(self._step_sidebar,bg=I["sidebar"]); sf.pack(fill="x")
-            # Indicador lateral
+        
             ind=tk.Frame(sf,bg=I["sidebar"],width=3)
             ind.place(x=0,y=0,relheight=1)
             btn=tk.Button(sf,relief="flat",cursor="hand2",anchor="w",
@@ -231,7 +211,7 @@ class Instalador:
                           bd=0,padx=18,pady=12,
                           command=lambda k=key:self._switch(k))
             btn.pack(fill="x")
-            # Número + label en el botón
+            
             btn.config(text=f"  {num}  {label}",
                        font=("Consolas",9))
             self._step_btns[key]=(btn,ind)
@@ -248,10 +228,9 @@ class Instalador:
         self._ip_lbl.pack(anchor="w",pady=(2,0))
         tk.Label(ii,text=SYSTEM,font=("Consolas",8),bg=I["sidebar"],fg=I["text3"]).pack(anchor="w")
 
-        # Separador vertical
+     
         tk.Frame(body,bg=I["border"],width=1).pack(side="left",fill="y")
 
-        # Área de contenido
         right_area=tk.Frame(body,bg=I["bg"]); right_area.pack(side="left",fill="both",expand=True)
 
         # Scroll
@@ -312,14 +291,12 @@ class Instalador:
         self._console.tag_configure("info",foreground="#60a5fa")
         self._console.tag_configure("dim", foreground=I["text3"])
 
-        # Construir páginas
         self._build_config(self._pages["config"])
         self._build_install(self._pages["install"])
         self._build_deps(self._pages["deps"])
         self._build_tools(self._pages["tools"])
         self._switch("config")
 
-        # Logs iniciales
         self._log(f"ShockNet Instalador iniciado",tag="info")
         self._log(f"Sistema    :  {SYSTEM}",tag="dim")
         self._log(f"Python     :  {get_py()}",tag="dim")
@@ -340,9 +317,6 @@ class Instalador:
                            font=("Consolas",9))
                 ind.config(bg=I["sidebar"])
 
-    # ════════════════════════════════════════════════════════
-    #  HELPERS UI
-    # ════════════════════════════════════════════════════════
     def _section(self,p,text,pady=(22,8)):
         f=tk.Frame(p,bg=I["panel"]); f.pack(fill="x",padx=24,pady=pady)
         tk.Label(f,text=f"//  {text}",font=("Consolas",10,"bold"),
@@ -381,13 +355,9 @@ class Instalador:
         self._console.delete("1.0","end")
         self._console.config(state="disabled")
 
-    # ════════════════════════════════════════════════════════
-    #  PASO 1: CONFIGURACIÓN
-    # ════════════════════════════════════════════════════════
     def _build_config(self,p):
         cfg=read_cfg()
 
-        # Conexión 
         self._section(p,"CONEXIÓN Y RED",pady=(22,6))
         net=self._card(p)
         ni=tk.Frame(net,bg=I["card"]); ni.pack(fill="x",padx=16,pady=14)
@@ -403,12 +373,10 @@ class Instalador:
         self._scan=tk.StringVar(value=cfg["SCAN_TIMEOUT"])
         IEntry(r,self._scan,width=10).pack(anchor="w",pady=(3,0))
 
-        #  Seguridad 
         self._section(p,"SEGURIDAD")
         sec=self._card(p)
         si=tk.Frame(sec,bg=I["card"]); si.pack(fill="x",padx=16,pady=14)
 
-        # Token
         tk.Label(si,text="TOKEN DE AUTENTICACIÓN",font=("Consolas",9,"bold"),
                  bg=I["card"],fg=I["text"]).pack(anchor="w")
         tk.Label(si,
@@ -428,8 +396,7 @@ class Instalador:
 
         # Separador
         tk.Frame(si,bg=I["border"],height=1).pack(fill="x",pady=(14,14))
-
-        # AES
+        
         tk.Label(si,text="CLAVE DE CIFRADO AES-256",font=("Consolas",9,"bold"),
                  bg=I["card"],fg=I["text"]).pack(anchor="w")
         tk.Label(si,text="32 caracteres exactos. Vacío = sin cifrado.",
@@ -467,7 +434,6 @@ class Instalador:
             tk.Label(fr,text=f"     {hint}",font=("Consolas",8),
                      bg=I["card"],fg=I["text3"]).pack(anchor="w")
 
-        # Mensajes 
         self._section(p,"MENSAJES POR DEFECTO")
         msg_c=self._card(p)
         mi=tk.Frame(msg_c,bg=I["card"]); mi.pack(fill="x",padx=16,pady=14)
@@ -478,7 +444,6 @@ class Instalador:
             tk.Label(mi,text=label,font=("Consolas",8),bg=I["card"],fg=I["text2"]).pack(anchor="w")
             IEntry(mi,var,width=65).pack(fill="x",pady=(3,10))
 
-        # Botón guardar
         bf=tk.Frame(p,bg=I["panel"]); bf.pack(fill="x",padx=24,pady=(16,28))
         IBtnPrimary(bf,"  GUARDAR CONFIGURACIÓN  ",self._save_cfg,padx=18,pady=10).pack(side="left")
         self._cfg_lbl=tk.Label(bf,text="",font=("Consolas",8),bg=I["panel"],fg=I["text3"])
@@ -510,10 +475,7 @@ class Instalador:
         else:
             self._cfg_lbl.config(text="✗ error al guardar",fg=I["err"])
             self._log("ERROR: no se pudo escribir core/config.py","err")
-
-    # ════════════════════════════════════════════════════════
-    #  PASO 2: INSTALACIÓN
-    # ════════════════════════════════════════════════════════
+   
     def _build_install(self,p):
         # Estado actual
         self._section(p,"ESTADO ACTUAL",pady=(22,6))
@@ -570,9 +532,6 @@ class Instalador:
         self._inst_lbl=tk.Label(p,text="",font=("Consolas",8),bg=I["panel"],fg=I["text3"])
         self._inst_lbl.pack(anchor="w",padx=24,pady=(10,28))
 
-    # ════════════════════════════════════════════════════════
-    #  PASO 3: DEPENDENCIAS
-    # ════════════════════════════════════════════════════════
     def _build_deps(self,p):
         self._section(p,"PAQUETES NECESARIOS",pady=(22,6))
         DEPS=[
@@ -651,9 +610,7 @@ class Instalador:
                     text="✗ error — ver consola",fg=I["err"]))
         threading.Thread(target=do,daemon=True).start()
 
-    # ════════════════════════════════════════════════════════
-    #  PASO 4: HERRAMIENTAS
-    # ════════════════════════════════════════════════════════
+
     def _build_tools(self,p):
         self._section(p,"ACCIONES RÁPIDAS",pady=(22,6))
         TOOLS=[
@@ -710,9 +667,6 @@ class Instalador:
                                   bg=I["panel"],fg=I["text3"])
         self._tools_lbl.pack(anchor="w",padx=24,pady=(0,28))
 
-    # ════════════════════════════════════════════════════════
-    #  LÓGICA DE ESTADO E INSTALACIÓN
-    # ════════════════════════════════════════════════════════
     def _refresh_status(self):
         threading.Thread(target=self._refresh_thread,daemon=True).start()
 
