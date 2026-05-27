@@ -1,7 +1,3 @@
-# ============================================================
-#  ShockNet — core/stats.py v1.0
-# ============================================================
-
 import json, os, csv
 from datetime import datetime
 from collections import Counter
