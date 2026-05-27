@@ -1,7 +1,3 @@
-# ============================================================
-#  ShockNet — core/kiosk.py v1.0
-# ============================================================
-
 import platform, subprocess, time, threading, logging, os
 
 log    = logging.getLogger("shocknet-kiosk")
