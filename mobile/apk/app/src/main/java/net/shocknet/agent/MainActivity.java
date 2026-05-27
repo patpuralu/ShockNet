@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Pantalla completa oscura
+        // Pantalla completa
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.parseColor("#0f0f0f"));
 
@@ -64,19 +64,16 @@ public class MainActivity extends Activity {
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setBackgroundColor(Color.parseColor("#080808"));
 
-        //  Barra superior
         View topBar = new View(this);
         topBar.setBackgroundColor(Color.parseColor("#E8192C"));
         layout.addView(topBar, new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, dp(3)));
 
-        // Header 
         LinearLayout header = new LinearLayout(this);
         header.setOrientation(LinearLayout.VERTICAL);
         header.setBackgroundColor(Color.parseColor("#0f0f0f"));
         header.setPadding(dp(20), dp(20), dp(20), dp(18));
 
-        // Logo row
         LinearLayout logoRow = new LinearLayout(this);
         logoRow.setOrientation(LinearLayout.HORIZONTAL);
         logoRow.setGravity(Gravity.CENTER_VERTICAL);
@@ -93,7 +90,6 @@ public class MainActivity extends Activity {
         logoRow.addView(agent);
         header.addView(logoRow);
 
-        // Estado en el header
         LinearLayout stRow = new LinearLayout(this);
         stRow.setOrientation(LinearLayout.HORIZONTAL);
         stRow.setGravity(Gravity.CENTER_VERTICAL);
@@ -111,7 +107,6 @@ public class MainActivity extends Activity {
         stRow.addView(tvStatus);
         header.addView(stRow);
 
-        // IP y puerto
         tvIp   = makeTv("IP: —", 11, Color.parseColor("#444444"), false);
         tvPort = makeTv("", 11, Color.parseColor("#333333"), false);
         LinearLayout.LayoutParams ipP = new LinearLayout.LayoutParams(
@@ -123,10 +118,8 @@ public class MainActivity extends Activity {
 
         layout.addView(header);
 
-        // Separador 
         addDivider(layout);
 
-        // Botón inicio / parada 
         LinearLayout btnSection = new LinearLayout(this);
         btnSection.setPadding(dp(20), dp(20), dp(20), dp(16));
         btnSection.setBackgroundColor(Color.parseColor("#080808"));
@@ -207,7 +200,6 @@ public class MainActivity extends Activity {
         addSectionTitle(layout, getString(R.string.section_info));
         addInfo(layout, getString(R.string.info_how_it_works));
 
-        // Versión y créditos
         TextView credits = makeTv("ShockNet Agent v1.0  //  github.com/patpuralu/ShockNet",
             10, Color.parseColor("#2a2a2a"), false);
         credits.setGravity(Gravity.CENTER);
@@ -222,7 +214,6 @@ public class MainActivity extends Activity {
         setContentView(root);
     }
 
-    // Lógica
     private void toggleService() {
         boolean running = Prefs.getBool(this, Prefs.SERVICE_RUNNING, false);
         if (running) {
@@ -399,7 +390,6 @@ public class MainActivity extends Activity {
         row.addView(sw);
         parent.addView(row);
 
-        // Separador interno sutil
         View sep = new View(this);
         sep.setBackgroundColor(Color.parseColor("#111111"));
         parent.addView(sep, new LinearLayout.LayoutParams(
