@@ -1,23 +1,20 @@
-# ============================================================
-#  ShockNet — core/config.py  v1.0
-# ============================================================
 
 APP_NAME    = "ShockNet"
-VERSION     = "3.0"
+VERSION     = "1.0"
 
 AGENT_PORT          = 9999
 TIMEOUT             = 5
 SCAN_TIMEOUT        = 0.4
-AUTO_SCAN_INTERVAL  = 5      # minutos (0 = desactivado)
-SCREENSHOT_INTERVAL = 2      # segundos entre capturas
+AUTO_SCAN_INTERVAL  = 5      # minutos 
+SCREENSHOT_INTERVAL = 2      
 
 # Seguridad
 AUTH_TOKEN = ""              # vacío = sin autenticación
 AES_KEY    = ""              # vacío = sin cifrado (32 chars exactos si se usa)
 
 # Comportamiento
-KIOSK_MODE     = True        # mantener aviso en primer plano
-SOUND_ENABLED  = True        # pitido al recibir aviso
+KIOSK_MODE     = True       
+SOUND_ENABLED  = True       
 
 #  Mensajes por defecto
 DEFAULT_TITLE   = "Aviso de red"
