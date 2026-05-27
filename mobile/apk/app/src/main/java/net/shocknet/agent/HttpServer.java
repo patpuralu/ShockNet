@@ -38,7 +38,7 @@ public class HttpServer implements Runnable {
         this.handler = handler;
     }
 
-    // Arranque 
+    // Arranque server
     @Override
     public void run() {
         try {
@@ -90,7 +90,6 @@ public class HttpServer implements Runnable {
             String fullPath = parts[1];
             String path     = fullPath.contains("?") ? fullPath.split("\\?")[0] : fullPath;
 
-            // Leer resto de cabeceras
             Map<String, String> headers = new LinkedHashMap<>();
             int contentLength = 0;
             String line;
@@ -119,7 +118,7 @@ public class HttpServer implements Runnable {
                 body = new String(cbuf, 0, total);
             }
 
-            // Autenticación
+            // Autenticación app
             String token = handler.getAuthToken();
             if (!token.isEmpty()) {
                 String authHeader = headers.getOrDefault("authorization", "");
