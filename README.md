@@ -285,7 +285,7 @@ Uso permitido únicamente para fines no comerciales.
 
 ### ShockNet
 
-Developed by PatPuralu  
+Developed by patpuralu  
 Creative Commons BY-NC 4.0
 
 </div>
