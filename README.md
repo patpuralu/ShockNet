@@ -164,7 +164,17 @@ La aplicación abrirá la interfaz principal desde donde podrás:
 Cada dispositivo receptor debe ejecutar:
 
 ```bash
+python instalador.py
+```
+O
+
+```bash
 python agent_run.py
+```
+O
+
+```bash
+El APK
 ```
 
 El agente se encargará de:
